@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FeedUploadComponent } from '../feed-upload.component';
@@ -10,11 +11,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./feed-upload-button.component.scss'],
 })
 export class FeedUploadButtonComponent implements OnInit, OnDestroy {
-
   isLoggedIn: boolean;
   loginSub: Subscription;
 
-  constructor(private modalController: ModalController, private auth: AuthService) { }
+  constructor(
+    private modalController: ModalController,
+    private auth: AuthService
+  ) {}
 
   ngOnInit() {
     this.auth.currentUser$.subscribe((user) => {
@@ -28,11 +31,11 @@ export class FeedUploadButtonComponent implements OnInit, OnDestroy {
     }
   }
 
-  async presentUploadForm(ev: any) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async presentUploadForm(ev: unknown) {
     const modal = await this.modalController.create({
       component: FeedUploadComponent,
     });
     return await modal.present();
   }
-
 }

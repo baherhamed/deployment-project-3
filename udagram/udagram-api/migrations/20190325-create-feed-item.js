@@ -24,6 +24,7 @@ module.exports = {
       },
     });
   },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('FeedItem');
   },

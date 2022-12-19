@@ -5,18 +5,20 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
-  }
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
+    // loadChildren: ./home/home.module#HomePageModule
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

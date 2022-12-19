@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {
+  Validators,
+  FormBuilder,
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 
 import { ModalController } from '@ionic/angular';
 
 import { AuthService } from '../services/auth.service';
-
 
 @Component({
   selector: 'app-auth-login',
@@ -19,26 +23,34 @@ export class AuthLoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private auth: AuthService,
     private modal: ModalController
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       password: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ]))
+      email: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+        ])
+      ),
     });
   }
 
   async onSubmit($event) {
     $event.preventDefault();
 
-    if (!this.loginForm.valid) { return; }
+    if (!this.loginForm.valid) {
+      return;
+    }
 
-    this.auth.login(
+    this.auth
+      .login(
         this.loginForm.controls.email.value,
-        this.loginForm.controls.password.value)
+        this.loginForm.controls.password.value
+      )
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .then((user) => {
         this.modal.dismiss();
       })
@@ -46,5 +58,5 @@ export class AuthLoginComponent implements OnInit {
         this.error = e.statusText;
         throw e;
       });
-    }
+  }
 }
