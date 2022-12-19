@@ -3,8 +3,8 @@ branch-defaults:
     environment: Newapp-env-2
   master:
     environment: Newapp-env-2
-# deploy:
-#   artifact: www/archive.zip
+deploy:
+  artifact: www/archive.zip
 environment-defaults:
   Newapp-env-2:
     branch: null
