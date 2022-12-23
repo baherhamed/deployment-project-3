@@ -1,16 +1,16 @@
 branch-defaults:
   main:
-    environment: Newapp-env-2
+    environment: Baherproject-env
   master:
-    environment: Newapp-env-2
+    environment: Baherproject-env
 deploy:
   artifact: www/archive.zip
 environment-defaults:
-  Newapp-env-2:
+  Baherproject-env:
     branch: null
     repository: null
 global:
-  application_name: new-app
+  application_name: baher-project
   default_ec2_keyname: baher
   default_platform: Node.js 14 running on 64bit Amazon Linux 2
   default_region: us-east-1
